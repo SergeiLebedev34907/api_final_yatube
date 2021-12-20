@@ -6,6 +6,7 @@ from posts.models import Comment, Follow, Group, Post, User
 
 from .validators import VariousValidator
 
+
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
@@ -49,5 +50,5 @@ class FollowSerializer(serializers.ModelSerializer):
             validators.UniqueTogetherValidator(
                 queryset=Follow.objects.all(), fields=("user", "following")
             ),
-            VariousValidator() # , values=(user, following)
+            VariousValidator(),  # , values=(user, following)
         ]

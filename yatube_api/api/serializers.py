@@ -4,6 +4,7 @@ from rest_framework.relations import SlugRelatedField
 
 from posts.models import Comment, Follow, Group, Post, User
 
+from .validators import VariousValidator
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,5 +48,6 @@ class FollowSerializer(serializers.ModelSerializer):
         validators = [
             validators.UniqueTogetherValidator(
                 queryset=Follow.objects.all(), fields=("user", "following")
-            )
+            ),
+            VariousValidator() # , values=(user, following)
         ]
